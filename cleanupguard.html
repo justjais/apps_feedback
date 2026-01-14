@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="CleanupGuard App Support - Submit feedback, report issues, or suggest improvements for the XYZ iOS app.">
+    <title>CleanupGuard App Support</title>
+
+    <!-- Google Fonts - Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Content Configuration (must load before page renders) -->
+    <script src="js/content.js"></script>
+</head>
+
+<body data-app-id="cleanupguard">
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <div class="page-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <a href="index.html" class="back-link" id="back-link"></a>
+            <h2 id="app-name"></h2>
+            <p id="app-tagline"></p>
+        </aside>
+
+        <!-- Main Content -->
+        <main id="main-content" class="content">
+            <header class="page-header">
+                <h1 id="page-title"></h1>
+            </header>
+
+            <section class="intro-text">
+                <p id="intro-line-1"></p>
+                <p id="intro-line-2"></p>
+                <p><strong id="intro-line-3"></strong></p>
+            </section>
+
+            <!-- Feedback Form -->
+            <form id="feedback-form" class="feedback-form" data-app-name="CleanupGuard"
+                action="https://formspree.io/f/xjggvnzz" method="POST">
+                <div class="form-group">
+                    <label for="name" id="name-label"></label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="">
+                </div>
+
+                <div class="form-group">
+                    <label for="email" id="email-label"></label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="">
+                </div>
+
+                <div class="form-group">
+                    <label for="subject" id="subject-label"></label>
+                    <input type="text" id="subject" name="subject" class="form-control" placeholder="" required
+                        aria-required="true">
+                </div>
+
+                <div class="form-group">
+                    <label for="message" id="message-label"></label>
+                    <textarea id="message" name="message" class="form-control" placeholder="" rows="6" required
+                        aria-required="true"></textarea>
+                </div>
+
+                <!-- Status Message -->
+                <div id="form-status" class="status-message" role="alert" aria-live="polite"></div>
+
+                <button type="submit" class="btn-submit" id="submit-btn"></button>
+            </form>
+
+            <footer class="page-footer">
+                <p class="privacy-note" id="privacy-note"></p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Content Configuration - must be loaded before feedback.js -->
+    <script src="js/content.js"></script>
+    <!-- Feedback Form Script -->
+    <script src="js/feedback.js"></script>
+
+    <!-- Dynamic Content Loader for App Pages -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var appId = document.body.dataset.appId;
+            var app = getAppById(appId);
+
+            if (!app) {
+                console.error('App not found:', appId);
+                return;
+            }
+
+            // Populate app-specific content
+            document.getElementById('back-link').textContent = APP_CONTENT.navigation.backToAppList;
+            document.getElementById('app-name').textContent = app.name;
+            document.getElementById('app-tagline').textContent = app.tagline;
+            document.getElementById('page-title').textContent = app.name + ' App Support';
+
+            // Also update the form's data-app-name attribute
+            document.getElementById('feedback-form').dataset.appName = app.name;
+
+            // Populate intro text
+            var introText = getAppIntroText(app.name);
+            document.getElementById('intro-line-1').textContent = introText.line1;
+            document.getElementById('intro-line-2').textContent = introText.line2;
+            document.getElementById('intro-line-3').textContent = introText.line3;
+
+            // Populate form labels with proper HTML for optional/required indicators
+            document.getElementById('name-label').innerHTML =
+                APP_CONTENT.form.nameLabel + ' <span class="optional">' + APP_CONTENT.form.optionalText + '</span>';
+            document.getElementById('email-label').innerHTML =
+                APP_CONTENT.form.emailLabel + ' <span class="optional">' + APP_CONTENT.form.optionalText + '</span>';
+            document.getElementById('subject-label').innerHTML =
+                APP_CONTENT.form.subjectLabel + ' <span aria-hidden="true">' + APP_CONTENT.form.requiredSymbol + '</span>';
+            document.getElementById('message-label').innerHTML =
+                APP_CONTENT.form.messageLabel + ' <span aria-hidden="true">' + APP_CONTENT.form.requiredSymbol + '</span>';
+
+            // Populate form placeholders
+            document.getElementById('name').placeholder = APP_CONTENT.form.namePlaceholder;
+            document.getElementById('email').placeholder = APP_CONTENT.form.emailPlaceholder;
+            document.getElementById('subject').placeholder = APP_CONTENT.form.subjectPlaceholder;
+            document.getElementById('message').placeholder = APP_CONTENT.form.messagePlaceholder;
+
+            // Populate submit button
+            document.getElementById('submit-btn').textContent = APP_CONTENT.form.submitButtonText;
+
+            // Populate privacy note
+            document.getElementById('privacy-note').textContent = APP_CONTENT.site.privacyNote;
+        });
+    </script>
+</body>
+
+</html>

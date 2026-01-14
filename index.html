@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="App Feedback Hub - Submit feedback and support requests for our iOS apps.">
+    <title>App Feedback Hub</title>
+
+    <!-- Google Fonts - Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Content Configuration (must load before page renders) -->
+    <script src="js/content.js"></script>
+</head>
+
+<body>
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <div class="page-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2 id="sidebar-title">App Feedback</h2>
+            <p id="sidebar-description"></p>
+        </aside>
+
+        <!-- Main Content -->
+        <main id="main-content" class="content">
+            <header class="page-header">
+                <h1 id="page-title"></h1>
+                <p class="subtitle" id="page-subtitle"></p>
+            </header>
+
+            <section class="intro-text">
+                <p id="intro-line-1"></p>
+                <p id="intro-line-2"></p>
+            </section>
+
+            <section>
+                <h2 id="apps-heading"></h2>
+                <ul class="app-list" id="app-list">
+                    <!-- App list will be populated dynamically -->
+                </ul>
+            </section>
+
+            <footer class="page-footer">
+                <p class="privacy-note" id="privacy-note"></p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Dynamic Content Loader -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Populate site content from APP_CONTENT
+            document.getElementById('sidebar-description').textContent = APP_CONTENT.site.description;
+            document.getElementById('page-title').textContent = APP_CONTENT.site.title;
+            document.getElementById('page-subtitle').textContent = APP_CONTENT.site.subtitle;
+            document.getElementById('intro-line-1').textContent = APP_CONTENT.site.introLine1;
+            document.getElementById('intro-line-2').textContent = APP_CONTENT.site.introLine2;
+            document.getElementById('apps-heading').textContent = APP_CONTENT.site.availableAppsHeading;
+            document.getElementById('privacy-note').textContent = APP_CONTENT.site.indexPrivacyNote;
+
+            // Populate app list dynamically
+            var appList = document.getElementById('app-list');
+            APP_CONTENT.apps.forEach(function (app) {
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                a.href = app.id + '.html';
+                a.textContent = app.name;
+                var span = document.createElement('span');
+                span.textContent = ' — ' + app.tagline;
+                li.appendChild(a);
+                li.appendChild(span);
+                appList.appendChild(li);
+            });
+        });
+    </script>
+</body>
+
+</html>
