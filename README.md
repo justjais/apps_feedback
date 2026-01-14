@@ -81,7 +81,7 @@ In **App Store Connect**:
 
 1. Go to your app → **App Information**
 2. Under **Support URL**, enter your feedback page URL:
-   - `https://apps_feedback.io/todoguard.html`
+   - `[https://apps_feedback/todoguard.html](https://justjais.github.io/apps_feedback/index.html)`
 3. This URL will appear on your App Store listing
 
 ## Design Reference
