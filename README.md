@@ -4,9 +4,9 @@ A static website hosted on GitHub Pages for collecting feedback and support requ
 
 ## Live Site
 
-- **Homepage**: https://apps_feedback.io
-- **TodoGuard Feedback**: https://apps_feedback.io/todoguard.html
-- **XYZ App Feedback**: https://apps_feedback.io/xyz_app.html
+- **Homepage**: https://justjais.github.io/apps_feedback/index.html
+- **TodoGuard Feedback**: https://justjais.github.io/apps_feedback/todoguard.html
+- **CleanupGuard App Feedback**: https://justjais.github.io/apps_feedback/cleanupguard.html
 
 ## Purpose
 
@@ -81,7 +81,7 @@ In **App Store Connect**:
 
 1. Go to your app → **App Information**
 2. Under **Support URL**, enter your feedback page URL:
-   - [https://apps_feedback/todoguard.html](https://justjais.github.io/apps_feedback/index.html)
+   - `https://justjais.github.io/apps_feedback/index.html`
 3. This URL will appear on your App Store listing
 
 ## Design Reference
