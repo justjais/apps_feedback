@@ -62,22 +62,6 @@ This repository provides a simple, privacy-respecting way to collect user feedba
 
 That's it! All other content (labels, intro text, etc.) is loaded dynamically from `content.js`.
 
-## How to Change the Formspree Endpoint
-
-The Formspree endpoint is configured in **one place**:
-
-**File**: `js/feedback.js`  
-**Line**: Near the top of the file
-
-```javascript
-var FORMSPREE_ENDPOINT = 'https://formspree.io/f/xjggvnzz';
-```
-
-To change the destination email:
-1. Create a new form at [formspree.io](https://formspree.io)
-2. Copy your form endpoint (e.g., `https://formspree.io/f/YOUR_ID`)
-3. Update `FORMSPREE_ENDPOINT` in `feedback.js`
-
 ## Spam Prevention Configuration
 
 The form includes client-side rate limiting to prevent abuse:
@@ -90,27 +74,6 @@ var MAX_SUBMISSIONS_PER_DAY = 3;   // Max submissions per day
 ```
 
 These settings are stored in `localStorage` and prevent excessive submissions from the same browser.
-
-## GitHub Pages Configuration
-
-### Option 1: Default GitHub Pages URL
-
-1. Go to **Settings** → **Pages**
-2. Under "Source", select **Deploy from a branch**
-3. Select the `main` branch and `/ (root)` folder
-4. Click **Save**
-
-Your site will be available at: `https://USERNAME.github.io/REPO_NAME/`
-
-### Option 2: Custom Domain
-
-1. Go to **Settings** → **Pages**
-2. Under "Custom domain", enter `apps_feedback.io`
-3. Create a `CNAME` file in the repository root containing your domain:
-   ```
-   apps_feedback.io
-   ```
-4. Configure your DNS provider with the appropriate records (see GitHub's [custom domain documentation](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site))
 
 ## Using as App Store Support URL
 
